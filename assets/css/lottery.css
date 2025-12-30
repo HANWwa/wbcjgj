@@ -1,0 +1,564 @@
+/**
+ * 抽奖页面样式
+ * @神奇奶酪
+ */
+
+/* ========== 抽奖容器 ========== */
+.lottery-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+/* ========== VIP徽章 ========== */
+.vip-badge-float {
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    z-index: 10;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ========== 抽奖卡片 ========== */
+.lottery-card {
+    background: var(--card-bg);
+    border-radius: 25px;
+    padding: 40px;
+    box-shadow: var(--shadow-xl);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.lottery-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--gradient-2);
+}
+
+.lottery-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.lottery-title {
+    font-size: 36px;
+    font-weight: bold;
+    background: var(--gradient-2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.lottery-subtitle {
+    font-size: 16px;
+    color: var(--text-gray);
+}
+
+/* ========== 步骤指示器 ========== */
+.lottery-steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.step-number {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-gray);
+    transition: all 0.4s;
+}
+
+.step-item.active .step-number {
+    background: var(--gradient-2);
+    border-color: transparent;
+    color: var(--text-light);
+    box-shadow: 0 0 20px rgba(245, 87, 108, 0.5);
+    transform: scale(1.15);
+}
+
+.step-item.completed .step-number {
+    background: var(--gradient-4);
+    border-color: transparent;
+    color: var(--dark-bg);
+}
+
+.step-item.completed .step-number::before {
+    content: '✓';
+    font-size: 22px;
+}
+
+.step-label {
+    font-size: 13px;
+    color: var(--text-gray);
+    white-space: nowrap;
+    transition: all 0.3s;
+}
+
+.step-item.active .step-label {
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.step-line {
+    flex: 1;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 15px;
+    position: relative;
+    top: -20px;
+    transition: all 0.4s;
+}
+
+.step-line.active {
+    background: var(--gradient-2);
+}
+
+/* ========== 抽奖区域 ========== */
+.lottery-section {
+    margin-bottom: 30px;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-light);
+}
+
+.section-icon {
+    font-size: 24px;
+}
+
+/* ========== 微博信息卡片 ========== */
+.weibo-info-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.weibo-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s;
+}
+
+.stat-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.stat-icon {
+    font-size: 32px;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: bold;
+    background: var(--gradient-2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 3px;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: var(--text-gray);
+}
+
+/* ========== 抽奖类型卡片 ========== */
+.lottery-type-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.type-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.type-card:hover {
+    border-color: var(--primary-color);
+    background: rgba(255, 107, 107, 0.1);
+    transform: translateY(-5px);
+}
+
+.type-card.selected {
+    border-color: var(--primary-color);
+    background: rgba(255, 107, 107, 0.15);
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+}
+
+.type-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.type-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 8px;
+}
+
+.type-desc {
+    font-size: 12px;
+    color: var(--text-gray);
+}
+
+/* ========== 抽奖动画 ========== */
+.lottery-animation {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.lottery-wheel {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 30px;
+    position: relative;
+}
+
+.wheel-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--gradient-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px rgba(245, 87, 108, 0.5);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.lottery-wheel.spinning .wheel-inner {
+    animation: spin 1s linear infinite, pulse 2s ease-in-out infinite;
+}
+
+.wheel-icon {
+    font-size: 64px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(245, 87, 108, 0.5);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 50px rgba(245, 87, 108, 0.8);
+    }
+}
+
+.lottery-text {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 25px;
+}
+
+.lottery-progress {
+    max-width: 400px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--gradient-2);
+    width: 0;
+    transition: width 3s ease-out;
+    border-radius: 2px;
+}
+
+/* ========== 抽奖结果 ========== */
+.result-info {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+.result-label {
+    color: var(--text-gray);
+    font-size: 15px;
+}
+
+.result-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.verify-code {
+    padding: 6px 16px;
+    background: var(--gradient-2);
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+}
+
+/* ========== 中奖名单 ========== */
+.winners-list {
+    margin-bottom: 25px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.winner-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.winner-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.winner-rank {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gradient-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: var(--text-light);
+    flex-shrink: 0;
+}
+
+.winner-info {
+    flex: 1;
+}
+
+.winner-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+.winner-uid {
+    font-size: 13px;
+    color: var(--text-gray);
+}
+
+/* ========== 公告框 ========== */
+.announcement-box {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.announcement-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+.announcement-text {
+    width: 100%;
+    min-height: 200px;
+    background: var(--card-bg);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 15px;
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.8;
+    resize: vertical;
+    font-family: inherit;
+    margin-bottom: 15px;
+}
+
+.announcement-text:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* ========== 按钮组 ========== */
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.button-group .btn {
+    flex: 1;
+}
+
+/* ========== 响应式设计 ========== */
+@media (max-width: 768px) {
+    .lottery-card {
+        padding: 25px 20px;
+    }
+
+    .lottery-title {
+        font-size: 28px;
+    }
+
+    .lottery-steps {
+        padding: 0 10px;
+    }
+
+    .step-number {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+    }
+
+    .step-label {
+        font-size: 11px;
+    }
+
+    .step-line {
+        margin: 0 8px;
+    }
+
+    .weibo-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .lottery-type-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .button-group .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .lottery-type-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .step-label {
+        display: none;
+    }
+}
+
+/* ========== 动画 ========== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
